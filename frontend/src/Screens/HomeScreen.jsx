@@ -11,13 +11,11 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
   const page = useSelector((state) => state.page);
 
-  const { loading, pageData, error } = page;
+  const { loading, pageInfo, error } = page;
 
   useEffect(() => {
     dispatch(loadPage());
   }, [dispatch]);
-
-  console.log(pageData);
 
   return loading ? (
     <Loader />
@@ -37,15 +35,12 @@ const HomeScreen = () => {
               />
             </Col>
             <Col md={12} lg={6} className="site-title">
-              <h3 className="title-text"></h3>
-              <h1 className="title-text text-uppercase"></h1>
+              <h3 className="title-text">hey </h3>
+              <h1 className="title-text text-uppercase">{pageInfo.heading}</h1>
               <h1 className="title-text text-uppercase text-green">
-                {/* {pageData.heading} */}
-                Arbab Hussain
+                {pageInfo.subHeading}
               </h1>
-              <h4 className="title-text text-uppercase">
-                Full Stack Developer
-              </h4>
+              <h4 className="title-text text-uppercase">{pageInfo.position}</h4>
               <div className="site-buttons">
                 <div className="d-flex flex-row flex-wrap">
                   <a

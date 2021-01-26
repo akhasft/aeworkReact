@@ -7,9 +7,9 @@ import {
 export const pageReducer = (state = {}, action) => {
   switch (action.type) {
     case PAGE_DETAILS_REQUEST:
-      return { loading: true, pageData: [] };
+      return { loading: true, pageInfo: [] };
     case PAGE_DETAILS_SUCCESS:
-      return { loading: false, success: true, pageData: action.payload };
+      return { loading: false, success: true, pageInfo: action.payload };
     case PAGE_DETAILS_FAIL:
       return { loading: false, error: action.payload };
 

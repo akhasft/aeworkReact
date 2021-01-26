@@ -1,14 +1,21 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const Footer = () => {
+  const page = useSelector((state) => state.page);
+
+  const { pageInfo } = page;
+
   return (
     <>
       <footer id="footer" className="footer-area mt-5">
         <Container>
           <div className="pt-5 mt-5">
             <div className="social text-center">
-              <h5 className="text-uppercase text-light">Connect me on</h5>
+              <h5 className="text-uppercase text-light">
+                Connect me on {pageInfo.mail}
+              </h5>
               <a href="https://github.com/arbabhsiddiqui">
                 <i className=" fab fa-github"></i>
               </a>
