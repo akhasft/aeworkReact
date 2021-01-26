@@ -1,10 +1,16 @@
 import express from "express";
 
 const router = express.Router();
-import { getPage, updatePage } from "../controllers/pageController.js";
+import {
+  getPage,
+  updatePage,
+  getPageById,
+} from "../controllers/pageController.js";
 
 import { protect, admin } from "../middleware/authMiddleware.js";
 
-router.route("/").get(getPage).put(protect, admin, updatePage);
+router.route("/").get(getPage);
+router.route("/:id").get(getPageById);
+router.route("/:id").put(protect, admin, updatePage);
 
 export default router;

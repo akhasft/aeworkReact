@@ -10,6 +10,15 @@ const getPage = asyncHandler(async (req, res) => {
   res.json(page);
 });
 
+// @desc    Fetch  page data
+// @route   GET /api/page
+// @access  Public
+const getPageById = asyncHandler(async (req, res) => {
+  const page = await Page.findById(req.params.id);
+
+  res.json(page);
+});
+
 // @desc    Update  page data
 // @route   GET /api/page
 // @access  Public
@@ -55,4 +64,4 @@ const updatePage = asyncHandler(async (req, res) => {
   }
 });
 
-export { getPage, updatePage };
+export { getPage, updatePage, getPageById };

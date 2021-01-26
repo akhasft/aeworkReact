@@ -1,16 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import {
-  productListReducer,
-  productDetailsReducer,
-  productDeleteReducer,
-  productCreateReducer,
-  productUpdateReducer,
-  productReviewCreateReducer,
-} from "./reducers/productReducers";
-
-import { cartReducer } from "./reducers/cartReducers";
+import { pageReducer } from "./reducers/pageReducers";
 
 import {
   userLoginReducer,
@@ -21,55 +12,32 @@ import {
   deleteUserReducer,
   userUpdateReducer,
 } from "./reducers/userReducers";
-import {
-  orderCreatedReducer,
-  orderDetailsReducer,
-  orderPayReducer,
-  listMyOrdersReducer,
-  listOrdersReducer,
-  orderDeliverReducer,
-} from "./reducers/orderReducers";
 
 const reducer = combineReducers({
-  productList: productListReducer,
-  productDetails: productDetailsReducer,
-  productDelete: productDeleteReducer,
-  productCreate: productCreateReducer,
-  productUpdate: productUpdateReducer,
-  productReviewCreate: productReviewCreateReducer,
-  cart: cartReducer,
+  // user reducer
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userProfileUpdate: userProfileUpdateReducer,
-  orderCreated: orderCreatedReducer,
-  orderDetails: orderDetailsReducer,
-  orderPay: orderPayReducer,
-  listMyOrders: listMyOrdersReducer,
-  listOrders: listOrdersReducer,
-  orderDeliver: orderDeliverReducer,
-  userList: userListReducer,
   deleteUser: deleteUserReducer,
+  userList: userListReducer,
   userUpdate: userUpdateReducer,
-});
 
-const cartItemsFromLocalStorage = localStorage.getItem("cartItems")
-  ? JSON.parse(localStorage.getItem("cartItems"))
-  : [];
+  // page reducer
+  page: pageReducer,
+});
 
 const userInfoFromLocalStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
-const shippingAddressLocalStorage = localStorage.getItem("shippingAddress")
-  ? JSON.parse(localStorage.getItem("shippingAddress"))
-  : {};
+
+const pageInfoFromLocalStorage = localStorage.getItem("pageInfo")
+  ? JSON.parse(localStorage.getItem("pageInfo"))
+  : null;
 
 const initialState = {
-  cart: {
-    cartItems: cartItemsFromLocalStorage,
-    shippingAddress: shippingAddressLocalStorage,
-  },
   userLogin: { userInfo: userInfoFromLocalStorage },
+  page: { pageInfo: pageInfoFromLocalStorage },
 };
 
 const middleware = [thunk];

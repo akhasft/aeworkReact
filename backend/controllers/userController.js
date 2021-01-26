@@ -2,6 +2,9 @@ import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 
+// @desc    user login auth
+// @route   POST /api/user/login
+// @access  Public
 const userAuth = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -20,8 +23,9 @@ const userAuth = asyncHandler(async (req, res) => {
   }
 });
 
-//
-
+// @desc    get login user profile
+// @route   GET /api/profile
+// @access  Private/admin
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
@@ -38,6 +42,9 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    update user profile
+// @route   PUT /api/user/profile
+// @access  Private/admin
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
@@ -63,6 +70,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    register user
+// @route   POST /api/user/:id
+// @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -93,11 +103,17 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    get Users
+// @route   GET /api/user
+// @access  Private/admin
 const getUsers = asyncHandler(async (req, res) => {
   const users = await User.find({});
   res.json(users);
 });
 
+// @desc    delete User
+// @route   DELETE /api/user/:id
+// @access  Private/admin
 const deleteUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
@@ -112,6 +128,9 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    get User by id
+// @route   GET /api/user/:id
+// @access  Private/admin
 const getUserById = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id).select("-password");
 
@@ -123,6 +142,9 @@ const getUserById = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    update User
+// @route   PUT /api/user/:id
+// @access  Private/admin
 const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 

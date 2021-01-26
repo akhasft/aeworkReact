@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import pageRoutes from "./routes/pageRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-// import orderRoutes from "./routes/orderRoutes.js";
-// import uploadRoutes from "./routes/uploadRoutes.js";
+import workRoutes from "./routes/workRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 import path from "path";
 import morgan from "morgan";
 
@@ -26,8 +26,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", userRoutes);
 app.use("/api/page", pageRoutes);
-// app.use("/api/orders", orderRoutes);
-// app.use("/api/upload", uploadRoutes);
+app.use("/api/work", workRoutes);
+app.use("/api/upload", uploadRoutes);
 
 const __dirname = path.resolve();
 
