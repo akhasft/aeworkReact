@@ -10,6 +10,7 @@ import LoginScreen from "./Screens/LoginScreen";
 import RegisterScreen from "./Screens/RegisterScreen";
 import UserListScreen from "./Screens/UserListScreen";
 import UserEditScreen from "./Screens/UserEditScreen";
+import UpdateHomeScreen from "./Screens/UpdateHomeScreen";
 
 const App = () => {
   return (
@@ -20,8 +21,14 @@ const App = () => {
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/login" component={LoginScreen} />
           <Route exact path="/register" component={RegisterScreen} />
+          {/* admin routers */}
           <Route exact path="/admin/userlist" component={UserListScreen} />
           <Route exact path="/admin/user/:id/edit" component={UserEditScreen} />
+          <Route
+            exact
+            path="/admin/updatehomepage"
+            component={UpdateHomeScreen}
+          />
         </Container>
       </main>
       <Footer />

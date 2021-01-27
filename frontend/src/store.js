@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { pageReducer } from "./reducers/pageReducers";
+import { pageReducer, pageUpdateReducer } from "./reducers/pageReducers";
 
 import {
   userLoginReducer,
@@ -25,6 +25,7 @@ const reducer = combineReducers({
 
   // page reducer
   page: pageReducer,
+  pageUpdate: pageUpdateReducer,
 });
 
 const userInfoFromLocalStorage = localStorage.getItem("userInfo")

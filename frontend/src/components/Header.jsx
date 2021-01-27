@@ -4,6 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userAction";
+import { Link } from "react-router-dom";
 const Header = () => {
   const dispatch = useDispatch();
 
@@ -36,9 +37,9 @@ const Header = () => {
               <div className="mr-auto"></div>
               <ul className="navbar-nav">
                 <li className="nav-item ">
-                  <a className="nav-link" href="#home">
-                    Home <span className="sr-only">(current)</span>
-                  </a>
+                  <Link className="nav-link" to="/">
+                    Home
+                  </Link>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#about">
@@ -56,27 +57,21 @@ const Header = () => {
                     Contact Me
                   </a>
                 </li>
-                {userInfo && (
-                  <NavDropdown title={userInfo.name} id="userName">
+
+                {userInfo && userInfo.isAdmin ? (
+                  <NavDropdown title="Admin DropDown" id="AdminName">
                     <LinkContainer to="/profile">
                       <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/userlist">
+                      <NavDropdown.Item>Users List</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/updatehomepage">
+                      <NavDropdown.Item>Update Home Page</NavDropdown.Item>
                     </LinkContainer>
                     <NavDropdown.Item onClick={logoutHandler}>
                       Logout
                     </NavDropdown.Item>
-                  </NavDropdown>
-                )}
-                {userInfo && userInfo.isAdmin ? (
-                  <NavDropdown title="Admin DropDown" id="AdminName">
-                    <LinkContainer to="/admin/userlist">
-                      <NavDropdown.Item>Users List</NavDropdown.Item>
-                    </LinkContainer>
-                    <LinkContainer to="/admin/productlist">
-                      <NavDropdown.Item>Products List</NavDropdown.Item>
-                    </LinkContainer>
-                    <LinkContainer to="/admin/orderlist">
-                      <NavDropdown.Item>Order List</NavDropdown.Item>
-                    </LinkContainer>
                   </NavDropdown>
                 ) : (
                   <></>
